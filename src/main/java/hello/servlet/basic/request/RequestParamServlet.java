@@ -18,7 +18,7 @@ public class RequestParamServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        // 전체 파라미터를 조회할 경우 
+        // 전체 파라미터를 조회할 경우
         System.out.println("[전체 파라미터 조회] - start");
         Enumeration<String> parameterNames = request.getParameterNames();
         while (parameterNames.hasMoreElements()) {
