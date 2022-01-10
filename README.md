@@ -71,3 +71,52 @@
 4. Front Controller에서 전달받은 View 기능  수행
 
 ---
+
+### Ver 3. Front Controller - Model 추가 
+
+1. 보여질 View File 경로를 지정해주는 코드에 반복적인 부분이 존재함. (View 이름 중복)
+
+   ```java
+   ... // (Ver 2. 코드 중)
+   // 각 Controller에서 MyView를 리턴할 때 "/WEB-INF/views/*/.jsp"가 중복적으로 사용된다.
+   return new MyView("/WEB-INF/views/members.jsp");
+   ```
+
+2. 각각의 기능을 수행하는 Controller에서 불필요한 HttpServletRequest/Response 등이 중복된다. (Servlet 종속성)
+
+   ```java
+   public class MemberFormControllerV2 implements ControllerV2 {
+     @Override
+     public MyView process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+     ...// 각 Contoller 별로 HttpServletRequest request, HttpServletResponse response 코드 포함
+     }
+   }
+   ```
+
+3. 각 기능 Controller에서는 View의 논리적 이름만 반환한도록 구현하고 실제 처리는 FrontController에서 처리하도록 구현(Servlet 종속석 제거를 위함.)
+
+   ```java
+   // Contoller 중 회원 목록 반환 Controller
+   public class MemberListControllerV3 implements ControllerV3 {
+       private MemberRepository memberRepository = MemberRepository.getInstance();
+   		// Controller에서는 View의 논리적인 이름만 반환하도록 함
+       @Override
+       public ModelView process(Map<String, String> paramMap) {
+           List<Member> members = memberRepository.findAll();
+           ModelView modelView = new ModelView("members");
+           modelView.getModel().put("members", members);
+   	      return modelView;
+      	}
+   }
+   ```
+
+4. 기능 Controller를 통해 전달받은 View의 논리적 이름으로 View의 **물리적 위치와 이름** 처리 (View 이름 중복 제거를 위함.)
+
+   ```java
+   ... // Front Controller Code 중 View 물리적 이름과 위치 반환.
+   private MyView viewResolver(String viewName) {
+       return new MyView("/WEB-INF/views/" + viewName + ".jsp");
+   }
+   ```
+
+5. Front Controller에서 Request(요청)으로 전달받은 값들을 Model로 만들어 View로 전달하도록 구현.
