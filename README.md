@@ -120,3 +120,33 @@
    ```
 
 5. Front Controller에서 Request(요청)으로 전달받은 값들을 Model로 만들어 View로 전달하도록 구현.
+
+---
+
+### Ver 4. Front Controller -  Controller 코드 간소화
+
+1. 각 Controller의 Parameter로 Model을 넣어 코드를 간소화한다.
+
+   ```java
+   public interface ControllerV4 {
+       String process(Map<String, String> paramMap, Map<String, Object> model);
+   }
+   ```
+
+2. Parameter에 model을 넣음으로써 Controller에서 ModelView 관련 코드를 제거하고 단순 View Name만 반환하도록 설정
+
+   ```java
+   // MemberListControllerV4 코드 중 
+   public String process(Map<String, String> paramMap, Map<String, Object> model) {
+       List<Member> members = memberRepository.findAll();
+       model.put("members", members);
+   	  // ModelView modelView = new ModelView("members"); //제거
+   		// modelView.getModel().put("members", members); //제거
+       return "members";
+   }
+   ```
+
+3. 즉, ControllerV3와 다르게 Model을 ControllerV4의 인자로 사용하여 ModelView에 대한 코드를 줄이고 각 Controller의 코드를 간소화.
+
+---
+
