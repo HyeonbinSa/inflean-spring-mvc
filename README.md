@@ -179,3 +179,8 @@
 - resouces>apllication.properties 파일  안에 있는 설정 정보를 통해  등록
   - `spring.mvc.view.prefix`
   - `spring.mvc.view.suffix`
+
+---
+
+### Ver 1. Spring MVC 
+
