@@ -17,6 +17,8 @@
     - 중복된 코드를 제거
     - Front Controller 이외에 Controller에서 Servlet을 사용하지 않아도 됨.
 
+---
+
 ### Ver 1. Front Controller의 도입
 
 1. Controller 기능을 수행하는 클래스들을 Interface를 생성하여 다형성을 이용하도록 수정한다.
@@ -26,6 +28,8 @@
      - Key : 요청 URL (`/fornt-controller/v1/members/save`)
      - Value : 호출되는 Controller (`MemberSaveControllerV1`)
 3. 각 Controller의 기능을 수행 -> JSP 실행
+
+---
 
 ### Ver 2. Front Controller - View 분리
 
@@ -150,3 +154,28 @@
 
 ---
 
+### Spring MVC
+
+#### DispatcherServlet
+
+- DispatcherServlet은 Spring MVC에서 Front Controller 역할을 수행한다.
+- HttpServlet을 상속받아 사용하며 Servlet으로 동작한다.
+  - `DispatcherServlet` -> FrameworkServlet -> HttpServletBean -> `HttpServlet`
+- Spring Boot는 DispatcherServlet을 서블릿으로 자동으로 등록하고 모든 경로에 대해 맵핑한다.
+- `doDispatch()`의 역할이 가장 중요하다.
+
+#### HandlerMapping, HandlerAdapter
+
+- HandlerMapping 에서 Controller를 찾는다. 
+  - Spring Bean Name으로 Handler 탐색 > BeanNameUrlHandlerMapping
+  - `Bean Name으로 탐색하여 Handler(OldController)  반환`
+- HandlerMapping에서 찾은 Handler를 실행할 HandlerAdapter가 필요
+  - Controller Interface(@Controller가 아님) 처리 > SimpleControllerHandlerAdapter
+  - `SimpleControllerHandlerAdapter가 Handler(OldController)를 내부에서 실행 후 결과 반환.`
+
+#### View Resolver
+
+- Spring Boot에서 `InternalResourceViewResolver`라는 View Resolver를 자동으로 등록
+- resouces>apllication.properties 파일  안에 있는 설정 정보를 통해  등록
+  - `spring.mvc.view.prefix`
+  - `spring.mvc.view.suffix`
