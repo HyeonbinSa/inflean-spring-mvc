@@ -1,14 +1,16 @@
-## Inflean - Spring MVC  학습
+# Inflean - Spring MVC  학습
 
----
 
-### 공부 순서
+## 📕 공부 순서
 
+### Project 1 - Servlet, JSP, MVC 패턴을 이용한 Spring MVC 구조 이해
 1. Servlet을 이용한 Web 
 2. JSP의 사용과 MVC 패턴 적용
 3. Front Controller 적용
+### Project 2 - Spring MVC를 활용한 Web Project
 
 ---
+## 🍀 Project 1
 
 ### Front Controller
 
@@ -17,7 +19,6 @@
     - 중복된 코드를 제거
     - Front Controller 이외에 Controller에서 Servlet을 사용하지 않아도 됨.
 
----
 
 ### Ver 1. Front Controller의 도입
 
@@ -29,7 +30,6 @@
      - Value : 호출되는 Controller (`MemberSaveControllerV1`)
 3. 각 Controller의 기능을 수행 -> JSP 실행
 
----
 
 ### Ver 2. Front Controller - View 분리
 
@@ -74,7 +74,6 @@
 
 4. Front Controller에서 전달받은 View 기능  수행
 
----
 
 ### Ver 3. Front Controller - Model 추가 
 
@@ -125,7 +124,6 @@
 
 5. Front Controller에서 Request(요청)으로 전달받은 값들을 Model로 만들어 View로 전달하도록 구현.
 
----
 
 ### Ver 4. Front Controller -  Controller 코드 간소화
 
@@ -152,7 +150,6 @@
 
 3. 즉, ControllerV3와 다르게 Model을 ControllerV4의 인자로 사용하여 ModelView에 대한 코드를 줄이고 각 Controller의 코드를 간소화.
 
----
 
 ### Spring MVC
 
@@ -180,7 +177,20 @@
   - `spring.mvc.view.prefix`
   - `spring.mvc.view.suffix`
 
----
+
 
 ### Ver 1. Spring MVC 
 
+---
+## 🍀 Project 2
+<br>
+
+### 📌 프로젝트 설정 정보
+- Gradle Project
+- Java 8
+- Spring Boot 2.6.3
+- Jar
+- Dependency
+  - Spring Web
+  - Thymeleaf
+  - Lombok
