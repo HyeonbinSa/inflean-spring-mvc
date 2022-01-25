@@ -43,4 +43,16 @@ public class MappingController {
         logger.info("mappingPath2 userId={}, orderId={}", userId, orderId);
         return "Ok";
     }
+
+    @GetMapping(value = "/mapping-header", headers = "mode=debug")
+    public String mappingHeader() {
+        logger.info("mappingHeader");
+        return "Ok";
+    }
+
+    @PostMapping(value = "/mapping-consume", consumes = "application/json")
+    public String mappingConsumes() {
+        logger.info("mappingConsumes");
+        return "Ok";
+    }
 }
