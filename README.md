@@ -210,4 +210,3 @@
     - PATCH : `/users/{userId}`
   - 회원 삭제
     - DELETE  : `/users/{userId}`
-- 
