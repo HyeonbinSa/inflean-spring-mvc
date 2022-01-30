@@ -210,3 +210,23 @@
     - PATCH : `/users/{userId}`
   - 회원 삭제
     - DELETE  : `/users/{userId}`
+
+---
+
+## 🍀 Project 3
+
+<br>
+
+### 📌 프로젝트 설정 정보
+
+- Gradle Project
+- Java 8
+- Spring Boot 2.6.3
+- Jar
+- Dependency
+  - Spring Web
+  - Thymeleaf
+  - Lombok
+
+<br>
+
