@@ -88,7 +88,7 @@ public class BasicItemController {
         // model.addAttribute("item", item);
 
         // item 상세 화면으로 이동
-        return "basic/item";
+        return "redirect:/basic/items/" + item.getId();
     }
 
     @GetMapping("/{itemId}/edit")
